@@ -16,6 +16,10 @@ $.ajax({
   let headArr=[];
   
   // p5 sketch
+  function preload() {
+    head = loadModel('assets/head.obj');
+  }
+  
   function setup() {
     createCanvas(windowWidth, windowHeight, WEBGL);
     angleMode(DEGREES);
@@ -36,10 +40,6 @@ $.ajax({
       }
     }
     
-  }
-  
-  function preload() {
-    head = loadModel('assets/head.obj');
   }
   
   function draw() {
