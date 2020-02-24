@@ -1,41 +1,29 @@
-let result1=[];
+
 let font;
-let test;
+let clicked = true;
+let prev;
 
-console.log("here");
-// $.ajax({
-//     url: 'https://randomuser.me/api/?results=10',
-//     dataType: 'json',
-//     success: function(data) {
-//       console.log(data);
-//     }
-//   });
-// fetch('https://randomuser.me/api/?results=10', {mode: "no-cors"}).then((response) => {
-//     return response.json();
-//   })
-//   .then((myJson) => {
-//     console.log(myJson);
-//   });
-
-  let head;
-  let cam1;
+let head;
+let cam1;
   
-  let headArr=[];
+let headArr=[];
   
   // p5 sketch
   function preload() {
     head = loadModel('assets/head.obj');
     font = loadFont('assets/Inconsolata-Regular.ttf');
     
+    // api request
     fetch('https://jsonplaceholder.typicode.com/users/')
     .then(response => response.json())
     .then(json => {console.log("here",json);
-      // create array of People objects
+      
+    // create array of People objects
       for (let x = 0; x < 10; x += 1) {
         for (let y = 0; y < 10; y += 1) {
     
           let p = new People(x,y,json[x]);
-          headArr.push(p);
+          headArr.push(p);  
         }
       }
   });
@@ -52,17 +40,6 @@ console.log("here");
     cam1.setPosition(-(width/0.8), (width/9),(width/0.35));
     cam1.lookAt(-800, 0, 0);
     cam1.perspective();
-    
-
-// // create array of People objects
-// for (let x = 0; x < 10; x += 1) {
-//   for (let y = 0; y < 10; y += 1) {
-
-//     let p = new People(x,y)
-//     headArr.push(p);
-//   }
-// }
-    
 }
   
   function draw() {
@@ -77,13 +54,38 @@ console.log("here");
     //iterate over People Array
     for (let p of headArr) {
       p.renderPerson();
-      p.renderButton();
-      //p.click();
+      p.renderText();
     }
   
   
   }
+
+  function displayinfo()
+  {
+    let r= int(Math.random()*100);
+    headArr[r].click();
+    let n = document.getElementById("sidebar");
+
+    if (clicked) // the first time
+    {
+      console.log("one");
+      let d = document.createElement("DIV"); 
+      d.setAttribute("id", "Div1");
+      let t = document.createTextNode(`Name: ${headArr[r].data.name} \nEmail: ${headArr[r].data.email}\nPhone Number: ${headArr[r].data.phone}`);
+      d.appendChild(t);
+      n.appendChild(d);
+      clicked = false;
+      prev =r;
+  }
+  else{
+    headArr[prev].click(); // prevent multiple objects from becoming red
+    let div = document.getElementById('Div1');
+    console.log(n.innerText);
+    div.innerText =`Name: ${headArr[r].data.name} \nEmail: ${headArr[r].data.email}\nPhone Number: ${headArr[r].data.phone}`;
+    prev=r;
   
+  }
+}
   
   class People {
     constructor(x,y,data) {
@@ -121,18 +123,8 @@ console.log("here");
       }
     }
     
-    renderButton()
+    renderText()
     {
-    //   push()
-    //   ambientMaterial(220);
-    //   scale(this.scale);
-    //   rotateX(170);
-    //   rotateY(180);
-    //   translate(40 * this.x, this.scale, 50*this.y );
-    //   box(10);
-    //   text('word', 0, 0,0);
-    //   pop();
-
     push();
     scale(this.scale);
     rotateX(170);
@@ -145,18 +137,10 @@ console.log("here");
     pop();
     }
     
-  //   click()
-  //   {
-  //     if (mouseIsPressed)
-  //     {
-  //     if (((mouseX>=this.x*40 +10)&&(mouseX<=this.x*40 -10)) && ((mouseY>=this.x*50 +10)&&(mouseY<=this.x*50 -10)))
-  //     {
-  //       console.log("clicked");
-  //       this.clicked = !this.clicked;
-  //     }
-  //     }
-      
-  //   }
+    click()
+    {
+        this.clicked = !this.clicked;
+    }
     
     
     
