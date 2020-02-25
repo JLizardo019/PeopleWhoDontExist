@@ -71,8 +71,7 @@ let headArr=[];
       console.log("one");
       let d = document.createElement("DIV"); 
       d.setAttribute("id", "Div1");
-      let t = document.createTextNode(`Name: ${headArr[r].data.name} \nEmail: ${headArr[r].data.email}\nPhone Number: ${headArr[r].data.phone}`);
-      d.appendChild(t);
+      d.innerText =`Name: ${headArr[r].data.name} \nEmail: ${headArr[r].data.email}\nPhone Number: ${headArr[r].data.phone}`;
       n.appendChild(d);
       clicked = false;
       prev =r;
@@ -80,7 +79,7 @@ let headArr=[];
   else{
     headArr[prev].click(); // prevent multiple objects from becoming red
     let div = document.getElementById('Div1');
-    console.log(n.innerText);
+    //console.log(n.innerText);
     div.innerText =`Name: ${headArr[r].data.name} \nEmail: ${headArr[r].data.email}\nPhone Number: ${headArr[r].data.phone}`;
     prev=r;
   
