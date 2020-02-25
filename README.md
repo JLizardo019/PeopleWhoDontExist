@@ -31,15 +31,15 @@ This project is hosted on Glitch. You can visit the rendered website [here](http
 
 ### Process
 
-![Main Design](assets/grid.png)
+<!-- ![Main Design](assets/grid.png) -->
 1. I created and analyzed the design/asthetic for the website and what was the style I was going for.
 
-![Style Guide](assets/colors.png)
+<!-- ![Style Guide](assets/colors.png) -->
 2. Next, I established the color palette for the design.
 
 3. Using the website [GoogleFonts] (https://fonts.google.com/), I identified the font I wanted to use in my website. I ended up using the font Inconsolata Regular in my design.
 
-![WireFrame](assets/wireframe.png)
+<!-- ![WireFrame](assets/wireframe.png) -->
 4. I established my wireframe before moving on to coding.
 
 5. I created the 3D world in p5.js and added the interactive component of using the orbitControl() function to allow users to navigate the space.
